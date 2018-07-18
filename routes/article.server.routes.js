@@ -7,6 +7,10 @@ module.exports = function(app){
 	.get(articles.list)
 	.post(users.requiresLogin, articles.create);
 
+    app.route('/articles/new').get(articles.new);
+
+app.route('/article/:articleId').get(articles.single);
+
   app.route('/api/articles/:articleId')
 	.get(articles.read)
     .delete(users.requiresLogin, articles.delete);
@@ -19,5 +23,8 @@ app.route('/articles/all').get(articles.all);
 
 app.param('articleId', articles.articleByID);
 
+app.route('/articles/edit/:articleId').get(articles.edit);
+
+app.route('/article/:articleId').get(articles.single);
 
 }
